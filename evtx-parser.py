@@ -9,6 +9,7 @@ def parse_evtx(file, eventids):
         
         for record in parser.records_json():
             
+            # Create a dict from the JSON string
             data = json.loads(record['data'])
             
             if data['Event']['System']['EventID'] in eventids:
@@ -19,6 +20,7 @@ def parse_evtx(file, eventids):
                     print(f'Computer: {data['Event']['System']['Computer']}')
                     print(f'User: {data['Event']['UserData']['EventXML']['Param1']}')
                     print(f'Source IP address: {data['Event']['UserData']['EventXML']['Param3']}')
+
                 except KeyError:
                     pass
 
