@@ -11,7 +11,7 @@ pip install evtx
 ## Usage
 ```
 python .\evtx-parser.py -h
-usage: evtx-parser.py [-h] --eventids EVENTIDS [EVENTIDS ...] --file FILE [--show-all]
+usage: evtx-parser.py [-h] --eventids EVENTIDS [EVENTIDS ...] --file FILE [--show-all] [--search SEARCH]
 
 Parse evtx files by EventID
 
@@ -21,4 +21,5 @@ options:
                         EventID to parse
   --file FILE, -f FILE  Path for evtx file
   --show-all            Show all event data
+  --search SEARCH       search for a specific string in the EventData
   ```
