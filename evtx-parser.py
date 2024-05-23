@@ -30,64 +30,30 @@ def parse_evtx(file, eventids, show_all=None, search=None):
                 if show_all:
                     print(f'{json.dumps(data, indent=2)}')
                 else:
-                    EventID = safeget(data, 'Event', 'System', 'EventID', '#text') or safeget(data, 'Event', 'System', 'EventID')
-                    TimeCreated = safeget(data, 'Event', 'System', 'TimeCreated', '#attributes', 'SystemTime')
-                    EventRecordID = safeget(data, 'Event', 'System', 'EventRecordID')
-                    UserID = safeget(data, 'Event', 'System', 'Security', '#attributes', 'UserID')
-                    Computer = safeget(data, 'Event', 'System', 'Computer')
-                    User = safeget(data, 'Event', 'UserData', 'EventXML', 'Param1')
-                    SourceIP = safeget(data, 'Event', 'UserData', 'EventXML', 'Param3')
-                    ProductName = safeget(data, 'Event', 'EventData', 'Product Name')
-                    CategoryName = safeget(data, 'Event', 'EventData', 'Category Name')
-                    DetectionUser = safeget(data, 'Event', 'EventData', 'Detection User')
-                    Severity = safeget(data, 'Event', 'EventData', 'Severity Name')
-                    ThreatName = safeget(data, 'Event', 'EventData', 'Threat Name')
-                    SystemUptime = safeget(data, 'Event', 'EventData', 'Data', '#text')
-                    ScriptBlockText = safeget(data, 'Event', 'EventData', 'ScriptBlockText')
+                    event = {
+                    "EventID": safeget(data, 'Event', 'System', 'EventID', '#text') or safeget(data, 'Event', 'System', 'EventID'),
+                    "TimeCreated": safeget(data, 'Event', 'System', 'TimeCreated', '#attributes', 'SystemTime'),
+                    "EventRecordID": safeget(data, 'Event', 'System', 'EventRecordID'),
+                    "UserID": safeget(data, 'Event', 'System', 'Security', '#attributes', 'UserID'),
+                    "Computer": safeget(data, 'Event', 'System', 'Computer'),
+                    "User": safeget(data, 'Event', 'UserData', 'EventXML', 'Param1'),
+                    "SourceIP": safeget(data, 'Event', 'UserData', 'EventXML', 'Param3'),
+                    "ProductName": safeget(data, 'Event', 'EventData', 'Product Name'),
+                    "CategoryName": safeget(data, 'Event', 'EventData', 'Category Name'),
+                    "DetectionUser": safeget(data, 'Event', 'EventData', 'Detection User'),
+                    "Severity": safeget(data, 'Event', 'EventData', 'Severity Name'),
+                    "ThreatName": safeget(data, 'Event', 'EventData', 'Threat Name'),
+                    "SystemUptime": safeget(data, 'Event', 'EventData', 'Data', '#text'),
+                    "ScriptBlockText": safeget(data, 'Event', 'EventData', 'ScriptBlockText'),
+                    }
                     
-                    if TimeCreated is not None:
-                        print(f'TimeCreated: {TimeCreated}')
-                        
-                    if EventRecordID is not None:
-                        print(f'EventRecordID: {EventRecordID}')
+                    for key, value in event.items():
+                        if key == "SystemUptime" and value is not None:
+                            value = value[4]
+                        if value is not None:
+                            print(f'{key}: {value}')
 
-                    if EventID is not None:
-                        print(f'EventID: {EventID}')
-
-                    if UserID is not None:
-                        print(f'UserID: {UserID}')
-                    
-                    if Computer is not None:
-                        print(f'Computer: {Computer}')
-                        
-                    if User is not None:    
-                        print(f'User: {User}')
-                    
-                    if SourceIP is not None:
-                        print(f'Source IP address: {SourceIP}')
-
-                    if ProductName is not None:
-                        print(f'Product Name: {ProductName}')
-                    
-                    if CategoryName is not None:
-                        print(f'Category Name: {CategoryName}')
-                    
-                    if DetectionUser is not None:
-                        print(f'Detection User: {DetectionUser}')
-                    
-                    if Severity is not None: 
-                        print(f'Severity: {Severity}')
-                    
-                    if ThreatName is not None:
-                        print(f'Threat Name: {ThreatName}')
-                    
-                    if SystemUptime is not None:
-                        print(f'System Uptime: {SystemUptime[4]}')
-
-                    if ScriptBlockText is not None:
-                        print(f'Script  Block Text: {ScriptBlockText}')
-
-                    print(f'------------------------------------------')
+                    print('------------------------------------------')
 
 def main():
     p = argparse.ArgumentParser(description='Parse evtx files by EventID')
