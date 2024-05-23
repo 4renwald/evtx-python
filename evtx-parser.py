@@ -4,6 +4,9 @@ import argparse
 import json
 
 def safeget(dct, *keys):
+    """
+    Helper function to safely get values from a nested dictionary
+    """
     for key in keys:
         try:
             dct = dct[key]
@@ -57,7 +60,7 @@ def parse_evtx(file, eventids, show_all=None, search=None):
 
 def main():
     p = argparse.ArgumentParser(description='Parse evtx files by EventID')
-    p.add_argument('--eventids', '-ids', type=int, required=True, nargs='+', help='EventID to parse')
+    p.add_argument('--eventids', '-ids', type=int, required=True, nargs='+', help='EventID to parse.Can be a list of IDs separated by a space. Example: --eventids 1149 ')
     p.add_argument('--file', '-f', type=Path, required=True, nargs=1, help='Path for evtx file')
     p.add_argument('--show-all', action='store_true', help='Show all event data')
     p.add_argument('--search', type=str, help='search for a specific string in the EventData')
