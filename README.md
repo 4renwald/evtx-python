@@ -18,7 +18,7 @@ Parse evtx files by EventID
 options:
   -h, --help            show this help message and exit
   --eventids EVENTIDS [EVENTIDS ...], -ids EVENTIDS [EVENTIDS ...]
-                        EventID to parse
+                        EventID to parse.Can be a list of IDs separated by a space. Example: --eventids 1149
   --file FILE, -f FILE  Path for evtx file
   --show-all            Show all event data
   --search SEARCH       search for a specific string in the EventData
