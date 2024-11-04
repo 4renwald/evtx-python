@@ -1,5 +1,8 @@
-<h1 align="center"><img style="padding:0;vertical-align:bottom;" height="32" width="32" src="eventvwr.ico"/> evtx-python</h1>
-<br/>
+<div align="center">
+  <img width="130px" src="assets/images/eventvwr_icon.png" />
+  <h1>evtx-python</h1>
+  <br/>
+</div>
 
 Quick evtx files parsing using: https://github.com/omerbenamram/evtx
 
