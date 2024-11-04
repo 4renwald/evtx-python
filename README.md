@@ -1,5 +1,9 @@
-# evtx-python
-Quick evtx files parsing using https://github.com/omerbenamram/evtx
+<div align="center">
+  <h1 align="center"><img style="padding:0;vertical-align:bottom;" height="32" width="32" src="eventvwr.ico"/> evtx-python</h1>
+  <br />
+</div>
+
+Quick evtx files parsing using: https://github.com/omerbenamram/evtx
 
 ## Setup env:
 ```
