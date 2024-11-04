@@ -5,7 +5,7 @@
 
 Quick evtx files parsing using: https://github.com/omerbenamram/evtx
 
-## Setup env:
+## Setup environment:
 ```
 python -m venv venv_evtx-python
 source venv_evtx-python/bin/activate
